@@ -61,7 +61,7 @@ const reverseArray = (arr) => {
         arr1.push(arr[i]);
     }
     
-        console.log([arr1]);
+        return(arr1);
 
         /* I tried all possible codes that didnt work here the CL give me Undefined 
         but i tried the code on online JS compiler thats work correctly*/
