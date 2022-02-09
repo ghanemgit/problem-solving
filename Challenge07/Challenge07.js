@@ -90,38 +90,25 @@ const objLat = (obj) => {
 const cvFormatter = (arr) => {
 
     // write your code here
-    var deletedItems = [];
-
-    arr.forEach((obj, idx) => {
+    let fullName = '';
+    let newArr = arr.map(obj => {
         if (obj.yearsOfExperience > 1) {
-            if (obj.firstName === null || obj.lastName === null) {
-                if (!obj.firstName) {
-                    obj['fullName'] = obj.lastName;
-                } else {
-                    obj['fullName'] = obj.firstName
-                }
-            } else {
-                obj['fullName'] = obj.firstName + ' ' + obj.lastName;
-            }
+            if (obj.firstName == null)
+                fullName = obj.lastName;
+            else if (obj.lastName == null)
+                fullName = obj.firstName;
+            else
+                fullName = obj.firstName + " " + obj.lastName;
 
-            delete obj.lastName
-            delete obj.firstName
-            delete obj.yearsOfExperience
-        } else {
-            deletedItems.push(idx)
+            return { fullName: `${fullName}`, tech: `${obj.tech}` };
         }
-    })
-    deletedItems.forEach(idx => { arr.splice(idx, 1) })
-    return arr;
+        else {
 
-
-
-    // let newArr = arr.map(obj => {
-    //     if (obj.yearsOfExperience > 1) {
-    //         return { fullName: (`${obj.firstName}${obj.lastName = ((obj.lastName == null) ? `` : ` ${obj.lastName}`)}`), tech: `${obj.tech}` };
-    //     }
-    // });
-    // return newArr;
+            return obj.delete();
+        }
+    });
+    console.log(newArr);
+    return newArr;
 }
 // 3) ---------------------
 //
@@ -145,8 +132,6 @@ const cvFormatter = (arr) => {
 // ------------------------
 const applicationsStatics = (arr) => {
     // write your code here
-    //console.log(arr);
-
     let result = {
         python_Devs: 0,
         javaScript_Devs: 0,
@@ -158,7 +143,6 @@ const applicationsStatics = (arr) => {
 
     let count = 0;
     arr.forEach((obj) => {
-        //console.log(obj.tech);
         if (obj.yearsOfExperience < 1 || !obj.firstName || !obj.lastName) {
             result.rejectedApplicants = 1;
         }
