@@ -1,2 +1,0 @@
-PR
-https://github.com/ghanemgit/problem-solving/pull/2
